@@ -38,7 +38,8 @@ axios.get('https://lambda-times-api.herokuapp.com/articles')
     })
     .catch(reject => {
         debugger
-        console.log(`You have an error`, reject);
+        alert(`Articles failed to load`);
+        console.log(reject);
     })
 
 const cardsContainer = document.querySelector('.cards-container');

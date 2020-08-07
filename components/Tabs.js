@@ -12,6 +12,7 @@
 
 axios.get('https://lambda-times-api.herokuapp.com/topics')
     .then(resolve => {
+        
         debugger
         const arr = Array.from(resolve.data.topics);
         arr.forEach(element => {
@@ -25,13 +26,43 @@ axios.get('https://lambda-times-api.herokuapp.com/topics')
 
 const topics = document.querySelector('.topics');
 
-function createNewTab(obj) {
+function createNewTab(item) {
     const tabDiv = document.createElement('div'); // create element
     tabDiv.classList.add('tab'); // add class
-    tabDiv.textContent = `${obj}`; // insert text
+    tabDiv.textContent = `${item}`; // insert text
     topics.appendChild(tabDiv); //append to div.topics element
 
     return tabDiv;
 }
 
 // createNewTab({topics: 'topic here'});
+
+// Stretch -  Use the tabs at the top of the page to filter articles by topic.
+
+
+// function createNewTab(item) {
+//     const tabDiv = document.createElement('div'); // create element
+//     tabDiv.classList.add('tab'); // add class
+//     tabDiv.textContent = `${item}`; // insert text
+//     topics.appendChild(tabDiv); //append to div.topics element
+
+//     return tabDiv;
+// }
+
+// createNewTab('All');
+
+
+// const theTabs = document.querySelectorAll('.tab');
+// console.log(theTabs);
+
+// const htmlArr = Array.from(theTabs);
+
+// htmlArr.forEach(function(item) {
+//     debugger
+//     item.addEventListener('click', (e) => {
+//         item.classList.toggle('tab');
+//         e.stopPropagation();
+// })
+// })
+
+// console.log(htmlArr, 'htmlarr');

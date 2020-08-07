@@ -31,7 +31,7 @@ function createNewTab(obj) {
     tabDiv.textContent = `${obj}`; // insert text
     topics.appendChild(tabDiv); //append to div.topics element
 
-    console.log(tabDiv)
+    return tabDiv;
 }
 
 // createNewTab({topics: 'topic here'});

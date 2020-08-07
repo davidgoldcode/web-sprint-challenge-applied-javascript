@@ -21,7 +21,28 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-function tbd(tbd) {
+axios.get('https://lambda-times-api.herokuapp.com/articles')
+    .then(resolve => {
+        debugger
+        const arr = resolve.data.articles;
+        const subjects = Object.keys(arr);
+        let full = subjects.map(function(name) {
+            return arr[name];
+        })
+        full.forEach(function(item) {
+            for (let i = 0; i < item.length; i++) {
+                return createCard(item[i]);
+            }
+        })
+    })
+    .catch(reject => {
+        debugger
+        console.log(`You have an error`, reject);
+    })
+
+const cardsContainer = document.querySelector('.cards-container');
+
+function createCard(object) {
     // create elements
     const cardDiv = document.createElement('div');
     const headlineDiv = document.createElement('div');
@@ -37,11 +58,27 @@ function tbd(tbd) {
     imgDiv.classList.add('img-container');
 
     //add attribute(s)
-    img.setAttribute('img', `url of authors img`)
+    img.setAttribute('img', `url of authors img`);
 
     //create hierarchy
     cardDiv.appendChild(headlineDiv);
     cardDiv.appendChild(authorDiv);
     authorDiv.appendChild(imgDiv);
+    authorDiv.appendChild(authSpan);
+    imgDiv.appendChild(img);
 
+    //add text
+    debugger
+    headlineDiv.textContent = `${headline}`; 
+    authSpan.textContent = `By: ${authorName}`; 
+
+    // add event listener
+    cardDiv.addEventListener('click', (e) => {
+        console.log(`${headline}`);
+    })
+
+    // append to parent
+    cardsContainer.appendChild(cardDiv);
+
+    return cardDiv;
 }

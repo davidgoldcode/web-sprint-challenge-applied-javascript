@@ -23,15 +23,16 @@
 
 axios.get('https://lambda-times-api.herokuapp.com/articles')
     .then(resolve => {
-        debugger
         const arr = resolve.data.articles;
         const subjects = Object.keys(arr);
         let full = subjects.map(function(name) {
             return arr[name];
         })
+        console.log(full);
         full.forEach(function(item) {
             for (let i = 0; i < item.length; i++) {
-                return createCard(item[i]);
+                debugger
+                createCard(item[i]);
             }
         })
     })
@@ -69,12 +70,12 @@ function createCard(object) {
 
     //add text
     debugger
-    headlineDiv.textContent = `${headline}`; 
-    authSpan.textContent = `By: ${authorName}`; 
+    headlineDiv.textContent = `${object.headline}`; 
+    authSpan.textContent = `By: ${object.authorName}`; 
 
     // add event listener
     cardDiv.addEventListener('click', (e) => {
-        console.log(`${headline}`);
+        console.log(`${object.headline}`);
     })
 
     // append to parent
